@@ -48,7 +48,7 @@ while True:
 
     grid(tile_size=32, vert_padding=32, horiz_padding=32)
     # Essentially pastes the testBlock onto the screen at x,y (100,00)
-    screen.blit(testBlock.sprite, (100, 100))
+    # screen.blit(testBlock.sprite, (100, 100))
 
     # Required for displaying stuff on screen
     # Essentially a 'Draw function'
