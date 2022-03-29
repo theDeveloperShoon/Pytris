@@ -34,6 +34,9 @@ while True:
     # Refreshes the screen with the blank black background
     screen.fill(BLACK)
 
+    # Essentially pastes the testBlock onto the screen at x,y (100,00)
+    screen.blit(testBlock.sprite, (100, 100))
+
     # Required for displaying stuff on screen
     # Essentially a 'Draw function'
     pygame.display.flip()
