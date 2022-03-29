@@ -11,6 +11,10 @@ class TestBlock:
     def __init__(self):
         self.sprite = pygame.image.load("Assets/TestBlock.png")
 
+
+BLACK = (0, 0, 0)
+
+
 pygame.init()
 screen_width = 640
 screen_height = 840
