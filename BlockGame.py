@@ -30,3 +30,10 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+    # Refreshes the screen with the blank black background
+    screen.fill(BLACK)
+
+    # Required for displaying stuff on screen
+    # Essentially a 'Draw function'
+    pygame.display.flip()
