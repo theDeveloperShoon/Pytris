@@ -15,7 +15,7 @@ pygame.init()
 screen_width = 640
 screen_height = 840
 resolution = screen_width, screen_height
-pygame.display.set_mode(resolution)
+screen = pygame.display.set_mode(resolution)
 pygame.display.set_caption("Shady Block Game")
 
 
