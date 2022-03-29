@@ -7,6 +7,11 @@ class Player:
         self.highscore = 0
 
 
+class ObjectList:
+    def __init__(self):
+        self.objects = []
+
+
 class TestBlock:
     def __init__(self):
         self.sprite = pygame.image.load("Assets/TestBlock.png")
