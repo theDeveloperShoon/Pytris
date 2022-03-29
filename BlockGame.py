@@ -1,6 +1,12 @@
 import sys
 import pygame
 
+
+class Player:
+    def __init__(self):
+        self.highscore = 0
+
+
 class TestBlock:
     def __init__(self):
         self.sprite = pygame.image.load("Assets/TestBlock.png")
