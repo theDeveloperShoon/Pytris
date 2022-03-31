@@ -18,6 +18,12 @@ class TestBlock:
         self.sprite = pygame.image.load("Assets/TestBlock.png")
 
 
+def draw_grid(grid):
+    for row in grid:
+        for tile in row:
+            grid_surface.blit(spr_tile, (tile[0], tile[1]))
+
+
 def grid(tile_size=16, horiz_padding=0, vert_padding=0):
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for x in range(0+horiz_padding, screen_width-horiz_padding, tile_size):
