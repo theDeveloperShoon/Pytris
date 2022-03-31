@@ -52,6 +52,7 @@ resolution = screen_width, screen_height
 screen = pygame.display.set_mode(resolution)
 pygame.display.set_caption("Shady Block Game")
 spr_tile = pygame.image.load("Assets/tile.png")
+grid_surface = Surface((screen_width, screen_height))
 
 testBlock = TestBlock()
 
