@@ -64,7 +64,9 @@ while True:
     # Refreshes the screen with the blank black background
     screen.fill(BLACK)
 
-    draw_a_grid(tile_size=48, vert_padding=32, horiz_padding=32)
+    # Draws a grid
+    # draw_a_grid(tile_size=48, vert_padding=32, horiz_padding=32)
+
     # Essentially pastes the testBlock onto the screen at x,y (100,00)
     # screen.blit(testBlock.sprite, (100, 100))
 
