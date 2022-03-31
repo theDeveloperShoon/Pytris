@@ -1,5 +1,6 @@
 import sys
 import pygame
+from pygame import Surface
 
 
 class Player:
