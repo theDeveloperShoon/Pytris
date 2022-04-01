@@ -73,7 +73,7 @@ spr_tile_filled = pygame.image.load("Assets/tilefilled.png")
 theGrid = grid(tile_size=48, vert_padding=32, horiz_padding=32)
 grid_surface = Surface((screen_width, screen_height))
 
-testBlock = TestBlock()
+testBlock = TestBlock(theGrid, xOffset=5, yOffset=1)
 
 while True:
     for event in pygame.event.get():
