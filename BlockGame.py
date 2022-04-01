@@ -1,5 +1,6 @@
 import sys
 import pygame
+import random
 from pygame import Surface
 
 
