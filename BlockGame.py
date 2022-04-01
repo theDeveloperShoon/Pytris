@@ -74,6 +74,7 @@ theGrid = grid(tile_size=48, vert_padding=32, horiz_padding=32)
 grid_surface = Surface((screen_width, screen_height))
 
 testBlock = TestBlock(theGrid, xOffset=5, yOffset=1)
+gameClock = pygame.time.Clock()
 
 while True:
     for event in pygame.event.get():
@@ -95,4 +96,7 @@ while True:
 
     # Required for displaying stuff on screen
     # Essentially a 'Draw function'
+
+    gameClock.tick(120)
+
     pygame.display.flip()
