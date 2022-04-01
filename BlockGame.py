@@ -15,8 +15,21 @@ class ObjectList:
 
 
 class TestBlock:
-    def __init__(self):
-        self.sprite = pygame.image.load("Assets/TestBlock.png")
+    def __init__(self, grid, xOffset=0, yOffset=0):
+        self.shape = [[False, False, False],
+                      [False, True, True],
+                      [False, True, True]]
+
+        numOfRows = len(self.shape)
+        numOfTiles = len(self.shape[0])
+
+        y = 0
+        while y < numOfRows:
+            x = 0
+            while x < numOfTiles:
+                grid[y+yOffset][x+xOffset][2] = self.shape[y][x]
+                x += 1
+            y += 1
 
 
 def draw_grid(grid):
