@@ -33,7 +33,7 @@ def grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for y in range(0+vert_padding, screen_height-vert_padding, tile_size):
         currentRow = []
         for x in range(0+horiz_padding, screen_width-vert_padding, tile_size):
-            gridItem = [x, y, False]
+            gridItem = [x, y, bool(round(random.random()))]
             currentRow.append(gridItem)
         myGrid.append(currentRow)
     return myGrid
