@@ -21,7 +21,10 @@ class TestBlock:
 def draw_grid(grid):
     for row in grid:
         for tile in row:
-            grid_surface.blit(spr_tile, (tile[0], tile[1]))
+            if tile[2] is True:
+                grid_surface.blit(spr_tile_filled, (tile[0], tile[1]))
+            else:
+                grid_surface.blit(spr_tile, (tile[0], tile[1]))
 
 
 def grid(tile_size=16, horiz_padding=0, vert_padding=0):
