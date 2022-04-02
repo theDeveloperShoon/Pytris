@@ -111,6 +111,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F12:
+                path = gameDataPath + "/screenshots/" + \
+                    strftime('%d_%b_%Y_%H_%M_%S', gmtime()) + ".png"
+
+                pygame.image.save(screen, path)
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
