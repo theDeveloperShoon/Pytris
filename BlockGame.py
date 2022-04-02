@@ -61,12 +61,13 @@ def grid(tile_size=16, horiz_padding=0, vert_padding=0):
     return myGrid
 
 
+"""
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for x in range(0+horiz_padding, screen_width-horiz_padding, tile_size):
         for y in range(0+vert_padding, screen_height-vert_padding, tile_size):
             rect = pygame.Rect(x, y, tile_size, tile_size)
             pygame.draw.rect(screen, WHITE, rect, 1)
-
+"""
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
