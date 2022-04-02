@@ -4,6 +4,15 @@ import pygame
 from pygame import Surface
 
 
+class Game:
+    def __init__(self):
+        self.grid = []
+        self.currentBlock = 0
+
+    def savegrid(self, grid):
+        self.grid = grid
+
+
 class Player:
     def __init__(self):
         self.highscore = 0
