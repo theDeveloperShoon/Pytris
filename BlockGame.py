@@ -2,6 +2,8 @@ import sys
 import pygame
 # import random
 from pygame import Surface
+import os
+from time import gmtime, strftime
 
 
 class Game:
