@@ -33,6 +33,7 @@ class TestBlock:
         self.isFalling = True
         self.paste_on_grid(myGrid)
 
+    def paste_on_grid(self, myGrid):
         numOfRows = len(self.shape)
         numOfTiles = len(self.shape[0])
 
