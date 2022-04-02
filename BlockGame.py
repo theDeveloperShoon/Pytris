@@ -28,6 +28,10 @@ class TestBlock:
         self.shape = [[False, False, False],
                       [False, True, True],
                       [False, True, True]]
+        self.xOffset = xOffset
+        self.yOffset = yOffset
+        self.isFalling = True
+        self.paste_on_grid(myGrid)
 
         numOfRows = len(self.shape)
         numOfTiles = len(self.shape[0])
