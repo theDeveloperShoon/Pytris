@@ -85,12 +85,21 @@ grid_surface = Surface((screen_width, screen_height))
 
 testBlock = TestBlock(theGrid, xOffset=5, yOffset=1)
 gameClock = pygame.time.Clock()
+timerActive = False
 
 while True:
     for event in pygame.event.get():
+        if event.type == pygame.USEREVENT:
+            testBlock.yOffset += 1
+            testBlock.paste_on_grid(theGrid)
+            timerActive = False
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+    if timerActive is False:
+        pygame.time.set_timer(pygame.USEREVENT, 1000)
+        timerActive = True
 
     # Refreshes the screen with the blank black background
     screen.fill(BLACK)
