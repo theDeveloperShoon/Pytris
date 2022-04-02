@@ -24,7 +24,7 @@ class ObjectList:
 
 
 class TestBlock:
-    def __init__(self, grid, xOffset=0, yOffset=0):
+    def __init__(self, myGrid, xOffset=0, yOffset=0):
         self.shape = [[False, False, False],
                       [False, True, True],
                       [False, True, True]]
@@ -36,7 +36,7 @@ class TestBlock:
         while y < numOfRows:
             x = 0
             while x < numOfTiles:
-                grid[y+yOffset][x+xOffset][2] = self.shape[y][x]
+                myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
                 x += 1
             y += 1
 
