@@ -10,13 +10,7 @@ from Game.Game import Game
 from enum import Enum
 
 
-class Game:
-    def __init__(self):
-        self.grid = []
-        self.currentBlock = 0
 
-    def savegrid(self, grid):
-        self.grid = grid
 
 
 class Player:
