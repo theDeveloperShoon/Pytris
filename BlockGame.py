@@ -75,7 +75,7 @@ theGrid = grid(tile_size=48, vert_padding=32, horiz_padding=32)
 grid_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
-testBlock = TestBlock(theGrid, xOffset=5, yOffset=1)
+testBlock = TestBlock(theGrid, 5, 1)
 gameClock = pygame.time.Clock()
 timerActive = False
 
