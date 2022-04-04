@@ -27,27 +27,11 @@ class ObjectList:
         self.objects = []
 
 
-class TestBlock:
-    def __init__(self, myGrid, xOffset=0, yOffset=0):
-        self.shape = [[False, False, False],
-                      [False, True, True],
-                      [False, True, True]]
-        self.xOffset = xOffset
-        self.yOffset = yOffset
-        self.isFalling = True
-        self.paste_on_grid(myGrid)
-
-    def paste_on_grid(self, myGrid):
-        numOfRows = len(self.shape)
-        numOfTiles = len(self.shape[0])
-
-        y = 0
-        while y < numOfRows:
-            x = 0
-            while x < numOfTiles:
-                myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
-                x += 1
-            y += 1
+class TestBlock(Block):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.shape = [[True, True],
+                      [True, True]]
 
 
 def draw_grid(grid):
