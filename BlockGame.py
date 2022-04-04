@@ -1,9 +1,13 @@
 import sys
-import pygame
-# import random
-from pygame import Surface
 import os
+# import random
+import pygame
+from pygame import Surface
 from time import gmtime, strftime
+from Game.Grid import Grid
+from Game.GameWindow import GameWindow
+from Game.Game import Game
+from enum import Enum
 
 
 class Game:
