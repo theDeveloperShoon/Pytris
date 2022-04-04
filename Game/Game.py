@@ -18,8 +18,17 @@ class Game:
                 gameDataPath = localAppDataPath + "/.Pytris"
                 os.mkdir(gameDataPath + '/screenshots')
 
-        else:
+        elif myOS == 'nt':
             localAppDataPath = os.getenv('LOCALAPPDATA')
+
+            if os.path.exists(localAppDataPath + "/Pytris"):
+                gameDataPath = localAppDataPath + "/Pytris"
+            else:
+                os.mkdir(localAppDataPath + "/Pytris")
+                gameDataPath = localAppDataPath + "/Pytris"
+                os.mkdir(gameDataPath + '/screenshots')
+        else:
+            localAppDataPath = '~/Library/Application Support'
 
             if os.path.exists(localAppDataPath + "/Pytris"):
                 gameDataPath = localAppDataPath + "/Pytris"
