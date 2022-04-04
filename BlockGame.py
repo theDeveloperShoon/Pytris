@@ -10,6 +10,9 @@ from Game.Game import Game
 from enum import Enum
 
 
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 
 
 
@@ -73,9 +76,6 @@ def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
             rect = pygame.Rect(x, y, tile_size, tile_size)
             pygame.draw.rect(screen, WHITE, rect, 1)
 """
-
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
 
 pygame.init()
 screen_width = 640
