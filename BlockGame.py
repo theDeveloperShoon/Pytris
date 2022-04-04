@@ -94,6 +94,15 @@ while True:
                     strftime('%d_%b_%Y_%H_%M_%S', gmtime()) + ".png"
 
                 pygame.image.save(screen, path)
+            if event.key == pygame.K_LEFT:
+                testBlock.xOffset -= 1
+                testBlock.paste_on_grid(theGrid)
+            if event.key == pygame.K_RIGHT:
+                testBlock.xOffset += 1
+                testBlock.paste_on_grid(theGrid)
+            if event.key == pygame.K_DOWN:
+                testBlock.yOffset += 1
+                testBlock.paste_on_grid(theGrid)
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
