@@ -87,14 +87,6 @@ spr_tile = pygame.image.load("Assets/tile.png")
 spr_tile_filled = pygame.image.load("Assets/tilefilled.png")
 theGrid = grid(tile_size=48, vert_padding=32, horiz_padding=32)
 grid_surface = Surface((screen_width, screen_height))
-localAppDataPath = os.getenv('LOCALAPPDATA')
-gameDataPath = ''
-if os.path.exists(localAppDataPath + "/Pytris"):
-    gameDataPath = localAppDataPath + "/Pytris"
-else:
-    os.mkdir(localAppDataPath + "/Pytris")
-    gameDataPath = localAppDataPath + "/Pytris"
-    os.mkdir(gameDataPath + '/screenshots')
 
 testBlock = TestBlock(theGrid, xOffset=5, yOffset=1)
 gameClock = pygame.time.Clock()
