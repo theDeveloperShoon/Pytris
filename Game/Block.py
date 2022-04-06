@@ -16,3 +16,28 @@ class Block:
                 myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
                 x += 1
             y += 1
+
+    def getBottomSide(self):
+        """
+            Want to create a column based check to see the bottom tile
+        """
+        tileNumVert = len(self.shape)
+        tileNumHoriz = len(self.shape[0])
+
+        listOfBottomTiles = []
+
+        x = 0
+        while x < tileNumHoriz:
+            y = 0
+            res = 0
+            while y < tileNumVert:
+                if self.shape[y][x] is True:
+                    res = y
+                y += 1
+
+            myTile = [x, res]
+            listOfBottomTiles.append(myTile)
+            x += 1
+
+        return listOfBottomTiles
+        # print(listOfBottomTiles)
