@@ -82,9 +82,11 @@ timerActive = False
 while True:
     for event in pygame.event.get():
         if event.type == pygame.USEREVENT:
-            testBlock.yOffset += 1
-            testBlock.paste_on_grid(theGrid)
-            timerActive = False
+            if testBlock.isFalling:
+                testBlock.yOffset += 1
+                testBlock.paste_on_grid(theGrid)
+                testBlock.getBottomSide()
+                timerActive = False
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
