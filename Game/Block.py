@@ -17,6 +17,22 @@ class Block:
                 x += 1
             y += 1
 
+    def canMoveDown(self, grid):
+        listOfBottomTiles = self.getBottomSide()
+        # print(listOfBottomTiles)
+        cantMoveDown = False
+        for tile in listOfBottomTiles:
+            # print(tile)
+            x = tile[0]
+            y = tile[1]
+            try:
+                if grid[y + self.yOffset + 1][self.xOffset + x] is True:
+                    cantMoveDown = True
+                    break
+            except IndexError:
+                cantMoveDown = True
+        return not cantMoveDown
+
     def getBottomSide(self):
         """
             Want to create a column based check to see the bottom tile
