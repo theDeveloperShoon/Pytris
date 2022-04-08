@@ -86,6 +86,8 @@ while True:
                 testBlock.yOffset += 1
                 testBlock.paste_on_grid(theGrid)
                 testBlock.getBottomSide()
+                testBlock.isFalling = testBlock.canMoveDown(theGrid)
+
                 timerActive = False
         if event.type == pygame.QUIT:
             pygame.quit()
