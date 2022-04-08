@@ -1,7 +1,7 @@
 class Grid:
     def __init__(self, grid):
         self.grid = grid
-        self.displayGrid = self.grid
+        self.displayGrid = grid
 
     def update(self):
         self.displayGrid = self.grid
