@@ -117,6 +117,7 @@ while True:
 
     # Refreshes the screen with the blank black background
     screen.fill(BLACK)
+    grid_surface.fill(BLACK)
 
     draw_grid(theGrid)
     screen.blit(grid_surface, grid_surface.get_rect())
