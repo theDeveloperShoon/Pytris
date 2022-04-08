@@ -92,8 +92,8 @@ while True:
             if testBlock.isFalling:
                 testBlock.yOffset += 1
                 testBlock.getBottomSide()
-                testBlock.isFalling = testBlock.canMoveDown(theGrid)
-
+                testBlock.isFalling = testBlock.canMoveDown(
+                    gridObj.displayGrid)
                 timerActive = False
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -111,8 +111,9 @@ while True:
             if event.key == pygame.K_DOWN:
                 if testBlock.isFalling:
                     testBlock.yOffset += 1
-                    testBlock.isFalling = testBlock.canMoveDown(theGrid)
-                    # print(testBlock.canMoveDown(theGrid))
+                    testBlock.isFalling = testBlock.canMoveDown(
+                        gridObj.displayGrid)
+
     testBlock.paste_on_grid(gridObj.displayGrid)
 
     if timerActive is False:
@@ -123,7 +124,7 @@ while True:
     screen.fill(BLACK)
     grid_surface.fill(BLACK)
 
-    draw_grid(theGrid)
+    draw_grid(gridObj.displayGrid)
     screen.blit(grid_surface, grid_surface.get_rect())
 
     # Draws a grid
