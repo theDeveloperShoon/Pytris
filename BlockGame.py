@@ -64,14 +64,18 @@ def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
 """
 
 pygame.init()
+
 screen_width = 640
 screen_height = 840
 resolution = screen_width, screen_height
 screen = pygame.display.set_mode(resolution)
 pygame.display.set_caption("Shady Block Game")
+
 spr_tile = pygame.image.load("Assets/tile.png")
 spr_tile_filled = pygame.image.load("Assets/tilefilled.png")
 theGrid = grid(tile_size=48, vert_padding=32, horiz_padding=32)
+
+
 grid_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
@@ -80,6 +84,7 @@ gameClock = pygame.time.Clock()
 timerActive = False
 
 while True:
+
     for event in pygame.event.get():
         if event.type == pygame.USEREVENT:
             if testBlock.isFalling:
