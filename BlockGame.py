@@ -105,8 +105,11 @@ while True:
                 testBlock.xOffset += 1
                 testBlock.paste_on_grid(theGrid)
             if event.key == pygame.K_DOWN:
-                testBlock.yOffset += 1
-                testBlock.paste_on_grid(theGrid)
+                if testBlock.isFalling:
+                    testBlock.yOffset += 1
+                    testBlock.paste_on_grid(theGrid)
+                    testBlock.isFalling = testBlock.canMoveDown(theGrid)
+                    # print(testBlock.canMoveDown(theGrid))
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
