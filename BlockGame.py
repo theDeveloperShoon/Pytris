@@ -91,7 +91,6 @@ while True:
         if event.type == pygame.USEREVENT:
             if testBlock.isFalling:
                 testBlock.yOffset += 1
-                testBlock.paste_on_grid(theGrid)
                 testBlock.getBottomSide()
                 testBlock.isFalling = testBlock.canMoveDown(theGrid)
 
@@ -107,16 +106,14 @@ while True:
                 pygame.image.save(screen, path)
             if event.key == pygame.K_LEFT:
                 testBlock.xOffset -= 1
-                testBlock.paste_on_grid(theGrid)
             if event.key == pygame.K_RIGHT:
                 testBlock.xOffset += 1
-                testBlock.paste_on_grid(theGrid)
             if event.key == pygame.K_DOWN:
                 if testBlock.isFalling:
                     testBlock.yOffset += 1
-                    testBlock.paste_on_grid(theGrid)
                     testBlock.isFalling = testBlock.canMoveDown(theGrid)
                     # print(testBlock.canMoveDown(theGrid))
+    testBlock.paste_on_grid(gridObj.displayGrid)
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
