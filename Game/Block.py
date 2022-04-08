@@ -55,5 +55,5 @@ class Block:
             listOfBottomTiles.append(myTile)
             x += 1
 
-        return listOfBottomTiles
         # print(listOfBottomTiles)
+        return listOfBottomTiles
