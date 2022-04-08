@@ -105,9 +105,11 @@ while True:
 
                 pygame.image.save(screen, path)
             if event.key == pygame.K_LEFT:
-                testBlock.xOffset -= 1
+                if testBlock.isFalling:
+                    testBlock.xOffset -= 1
             if event.key == pygame.K_RIGHT:
-                testBlock.xOffset += 1
+                if testBlock.isFalling:
+                    testBlock.xOffset += 1
             if event.key == pygame.K_DOWN:
                 if testBlock.isFalling:
                     testBlock.yOffset += 1
