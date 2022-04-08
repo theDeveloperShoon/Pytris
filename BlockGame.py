@@ -44,7 +44,7 @@ def draw_grid(grid):
                 grid_surface.blit(spr_tile, (tile[0], tile[1]))
 
 
-def grid(tile_size=16, horiz_padding=0, vert_padding=0):
+def create_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     myGrid = []
     for y in range(0+vert_padding, screen_height-(vert_padding*2), tile_size):
         currentRow = []
