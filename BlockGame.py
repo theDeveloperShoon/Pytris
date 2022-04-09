@@ -23,8 +23,16 @@ class Player:
 
 
 class ObjectList:
-    def __init__(self):
+    def __init__(self, startingBlock):
         self.objects = []
+        self.objects.append(startingBlock)
+        self.currentBlockIndex = 0
+        self.currentBlock = self.objects[self.currentBlockIndex]
+
+    def new_block(self, block):
+        self.objects.append(block)
+        self.currentBlockIndex += 1
+        self.currentBlock = self.objects[self.currentBlockIndex]
 
 
 class TestBlock(Block):
