@@ -26,7 +26,7 @@ class Block:
             x = tile[0]
             y = tile[1]
             try:
-                if grid[y + self.yOffset + 1][self.xOffset + x] is True:
+                if grid[y + self.yOffset + 1][self.xOffset + x][2] is True:
                     cantMoveDown = True
                     break
             except IndexError:
