@@ -27,7 +27,7 @@ class Grid:
         self.save_display_grid_on_grid()
         # print(self.grid)
 
-    def clear_grid(self):
+    def clear_display_grid(self):
         blankedGrid = []
         for row in self.displayGrid:
             clearedRow = []
