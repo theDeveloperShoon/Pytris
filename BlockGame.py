@@ -83,7 +83,7 @@ gameClock = pygame.time.Clock()
 timerActive = False
 
 while True:
-    gridObj.clear_grid()
+    gridObj.update()
 
     for event in pygame.event.get():
         if event.type == pygame.USEREVENT:
