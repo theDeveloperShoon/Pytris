@@ -17,6 +17,8 @@ class Block:
                 x += 1
             y += 1
 
+        return myGrid
+
     def canMoveDown(self, grid):
         listOfBottomTiles = self.getBottomSide()
         # print(listOfBottomTiles)
