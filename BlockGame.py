@@ -85,10 +85,10 @@ while True:
 
     for event in pygame.event.get():
         if event.type == pygame.USEREVENT:
-            if testBlock.isFalling:
-                testBlock.yOffset += 1
-                testBlock.getBottomSide()
-                testBlock.isFalling = testBlock.canMoveDown(
+            if obj_list.currentBlock.isFalling:
+                obj_list.currentBlock.yOffset += 1
+                obj_list.currentBlock.getBottomSide()
+                obj_list.currentBlock.isFalling = obj_list.currentBlock.canMoveDown(
                     gridObj.displayGrid)
                 timerActive = False
         if event.type == pygame.QUIT:
@@ -101,18 +101,20 @@ while True:
 
                 pygame.image.save(screen, path)
             if event.key == pygame.K_LEFT:
-                if testBlock.isFalling:
-                    testBlock.xOffset -= 1
+                if obj_list.currentBlock.isFalling:
+                    obj_list.currentBlock.xOffset -= 1
             if event.key == pygame.K_RIGHT:
-                if testBlock.isFalling:
-                    testBlock.xOffset += 1
+                if obj_list.currentBlock.isFalling:
+                    obj_list.currentBlock.xOffset += 1
             if event.key == pygame.K_DOWN:
-                if testBlock.isFalling:
-                    testBlock.yOffset += 1
-                    testBlock.isFalling = testBlock.canMoveDown(
+                if obj_list.currentBlock.isFalling:
+                    obj_list.currentBlock.yOffset += 1
+                    obj_list.currentBlock.isFalling = obj_list.currentBlock.canMoveDown(
                         gridObj.displayGrid)
 
-    testBlock.paste_on_grid(gridObj.displayGrid)
+    gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
+        gridObj.displayGrid)
+
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
