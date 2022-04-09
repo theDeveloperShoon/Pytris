@@ -1,5 +1,5 @@
 class Block:
-    def __init__(self, myGrid, xOffset, yOffset):
+    def __init__(self, xOffset, yOffset):
         self.shape = [[True]]
         self.xOffset = xOffset
         self.yOffset = yOffset
