@@ -19,11 +19,13 @@ class Grid:
         self.displayGrid = grid
 
     def update(self):
-        self.displayGrid = self.grid
+        self.clear_display_grid()
+        self.paste_grid_on_display_grid()
+        # print(self.grid)
 
     def save(self):
-        self.grid = self.displayGrid
-        print(self.grid)
+        self.save_display_grid_on_grid()
+        # print(self.grid)
 
     def clear_grid(self):
         blankedGrid = []
