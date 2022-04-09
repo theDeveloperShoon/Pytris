@@ -77,6 +77,7 @@ grid_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
 startBlock = TestBlock(5, 0)
+obj_list = ObjectList(startBlock)
 
 gameClock = pygame.time.Clock()
 timerActive = False
