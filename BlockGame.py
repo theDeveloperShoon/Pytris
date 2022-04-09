@@ -117,6 +117,10 @@ while True:
     gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
         gridObj.displayGrid)
 
+    if obj_list.currentBlock.isFalling is False:
+        gridObj.save()
+        newBlock = TestBlock(5, 0)
+        obj_list.new_block(newBlock)
 
     if timerActive is False:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
