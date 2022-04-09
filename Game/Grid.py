@@ -35,3 +35,27 @@ class Grid:
                 clearedRow.append(newTile)
             blankedGrid.append(clearedRow)
         self.displayGrid = blankedGrid
+
+    def paste_grid_on_display_grid(self):
+        numOfRows = len(self.grid)
+        numOfTiles = len(self.grid[0])
+
+        y = 0
+        while y < numOfRows:
+            x = 0
+            while x < numOfTiles:
+                self.displayGrid[y][x][2] = self.grid[y][x][2]
+                x += 1
+            y += 1
+
+    def save_display_grid_on_grid(self):
+        numOfRows = len(self.grid)
+        numOfTiles = len(self.grid[0])
+
+        y = 0
+        while y < numOfRows:
+            x = 0
+            while x < numOfTiles:
+                self.grid[y][x][2] = self.displayGrid[y][x][2]
+                x += 1
+            y += 1
