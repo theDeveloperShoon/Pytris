@@ -14,9 +14,22 @@ def create_grid(screen_width,
 
 
 class Grid:
-    def __init__(self, grid):
-        self.grid = grid
-        self.displayGrid = grid
+    def __init__(self,
+                 tile_size,
+                 screen_width,
+                 screen_height,
+                 vert_padding=0,
+                 horiz_padding=0):
+        self.grid = create_grid(screen_width,
+                                screen_height,
+                                tile_size,
+                                horiz_padding,
+                                vert_padding)
+        self.displayGrid = create_grid(screen_width,
+                                       screen_height,
+                                       tile_size,
+                                       horiz_padding,
+                                       vert_padding)
 
     def update(self):
         self.clear_display_grid()
