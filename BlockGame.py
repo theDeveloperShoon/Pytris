@@ -70,8 +70,8 @@ pygame.display.set_caption("Shady Block Game")
 spr_tile = pygame.image.load("Assets/tile.png")
 spr_tile_filled = pygame.image.load("Assets/tilefilled.png")
 
-theGrid = create_grid(tile_size=48, vert_padding=32, horiz_padding=32)
-gridObj = Grid(theGrid)
+gridObj = Grid(48, screen_width, screen_height,
+               vert_padding=32, horiz_padding=32)
 
 grid_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
