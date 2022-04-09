@@ -8,7 +8,6 @@ from Game.Grid import Grid
 from Game.GameWindow import GameWindow
 from Game.Game import Game
 from Game.Block import Block
-from enum import Enum
 
 
 BLACK = (0, 0, 0)
