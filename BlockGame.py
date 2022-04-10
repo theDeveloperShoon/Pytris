@@ -105,7 +105,8 @@ while True:
                 pygame.image.save(screen, path)
             if event.key == pygame.K_LEFT:
                 if obj_list.currentBlock.isFalling:
-                    obj_list.currentBlock.xOffset -= 1
+                    if obj_list.currentBlock.canMoveLeft(gridObj.displayGrid):
+                        obj_list.currentBlock.xOffset -= 1
             if event.key == pygame.K_RIGHT:
                 if obj_list.currentBlock.isFalling:
                     if obj_list.currentBlock.canMoveRight(gridObj.displayGrid):
