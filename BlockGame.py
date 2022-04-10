@@ -35,11 +35,18 @@ class ObjectList:
         self.currentBlock = self.objects[self.currentBlockIndex]
 
 
-class TestBlock(Block):
+class SquareBlock(Block):
     def __init__(self, *args):
         super().__init__(*args)
         self.shape = [[True, True],
                       [True, True]]
+
+
+class TestBlock(Block):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.shape = [[True, False, False],
+                      [True, True, True]]
 
 
 def draw_grid(grid):
@@ -76,7 +83,7 @@ gridObj = Grid(48, screen_width, screen_height,
 grid_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
-startBlock = TestBlock(5, 0)
+startBlock = SquareBlock(5, 0)
 obj_list = ObjectList(startBlock)
 
 gameClock = pygame.time.Clock()
