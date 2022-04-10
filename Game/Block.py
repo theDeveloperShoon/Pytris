@@ -33,6 +33,7 @@ class Block:
                     break
             except IndexError:
                 cantMoveDown = True
+                break
         return not cantMoveDown
 
     def getBottomSide(self):
