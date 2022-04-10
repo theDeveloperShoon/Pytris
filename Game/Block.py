@@ -19,6 +19,45 @@ class Block:
 
         return myGrid
 
+    def canMoveRight(self, grid):
+        listOfRightTiles = self.getRightSide()
+        cantMoveRight = False
+
+        for tile in listOfRightTiles:
+            x = tile[0]
+            y = tile[1]
+            try:
+                if grid[y + self.yOffset][self.xOffset + x + 1][2] is True:
+                    cantMoveRight = True
+                    break
+            except IndexError:
+                cantMoveRight = True
+                break
+        return not cantMoveRight
+
+    def getRightSide(self):
+        """
+            Creates a row based check for the right side
+        """
+        tileNumVert = len(self.shape)
+        tileNumHoriz = len(self.shape[0])
+
+        listOfRightTiles = []
+
+        y = 0
+        while y < tileNumVert:
+            x = 0
+            res = 0
+            while x < tileNumHoriz:
+                if self.shape[y][x] is True:
+                    res = x
+                x += 1
+            myTile = [res, y]
+            listOfRightTiles.append(myTile)
+            y += 1
+
+        return listOfRightTiles
+
     def canMoveDown(self, grid):
         listOfBottomTiles = self.getBottomSide()
         # print(listOfBottomTiles)
