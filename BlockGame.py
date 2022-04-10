@@ -88,10 +88,11 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.USEREVENT:
             if obj_list.currentBlock.isFalling:
-                obj_list.currentBlock.yOffset += 1
-                obj_list.currentBlock.getBottomSide()
-                obj_list.currentBlock.isFalling = obj_list.currentBlock.canMoveDown(
-                    gridObj.displayGrid)
+                if obj_list.currentBlock.canMoveDown(
+                        gridObj.displayGrid):
+                    obj_list.currentBlock.yOffset += 1
+                else:
+                    obj_list.currentBlock.isFalling = False
                 timerActive = False
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -110,9 +111,11 @@ while True:
                     obj_list.currentBlock.xOffset += 1
             if event.key == pygame.K_DOWN:
                 if obj_list.currentBlock.isFalling:
-                    obj_list.currentBlock.yOffset += 1
-                    obj_list.currentBlock.isFalling = obj_list.currentBlock.canMoveDown(
-                        gridObj.displayGrid)
+                    if obj_list.currentBlock.canMoveDown(
+                            gridObj.displayGrid):
+                        obj_list.currentBlock.yOffset += 1
+                    else:
+                        obj_list.currentBlock.isFalling = False
 
     gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
         gridObj.displayGrid)
