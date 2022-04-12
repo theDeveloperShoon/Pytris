@@ -42,11 +42,33 @@ class SquareBlock(Block):
                       [True, True]]
 
 
-class TestBlock(Block):
+class LShapedBlock(Block):
     def __init__(self, *args):
         super().__init__(*args)
         self.shape = [[True, False, False],
                       [True, True, True]]
+
+
+class FlippedLBlock(Block):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.shape = [[False, False, True],
+                      [True, True, True]]
+
+
+class LayedDownBlock(Block):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.shape = [[True, True, True, True]]
+
+
+class VerticalBlock(Block):
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.shape = [[True],
+                      [True],
+                      [True],
+                      [True]]
 
 
 def draw_grid(grid):
