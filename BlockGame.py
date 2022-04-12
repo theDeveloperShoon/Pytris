@@ -1,6 +1,6 @@
 import sys
 import os
-# import random
+import random
 import pygame
 from pygame import Surface
 from time import gmtime, strftime
@@ -15,6 +15,28 @@ WHITE = (255, 255, 255)
 
 
 objectList = []
+
+
+class BlockRandomizer:
+    def __init__(self):
+        LShapeBlockType = type(LShapedBlock(5, 0))
+        SquareBlockType = type(SquareBlock(5, 0))
+        FlippedLBlockType = type(FlippedLBlock(5, 0))
+        LayedDownBlockType = type(LayedDownBlock(5, 0))
+        VerticalBlockType = type(VerticalBlock(5, 0))
+
+        self.BlockTypes = []
+        self.BlockTypes.append(LShapeBlockType)
+        self.BlockTypes.append(SquareBlockType)
+        self.BlockTypes.append(FlippedLBlockType)
+        self.BlockTypes.append(LayedDownBlockType)
+        self.BlockTypes.append(VerticalBlockType)
+
+    def getRandomBlock(self):
+        randomBlockIndex = random.randint(0, len(self.BlockTypes) - 1)
+        newObjectType = self.BlockTypes[randomBlockIndex]
+        newObject = newObjectType(5, 0)
+        return newObject
 
 
 class Player:
@@ -107,6 +129,7 @@ gameStuff = Game()
 
 startBlock = SquareBlock(5, 0)
 obj_list = ObjectList(startBlock)
+blockRandomizer = BlockRandomizer()
 
 gameClock = pygame.time.Clock()
 timerActive = False
@@ -153,7 +176,7 @@ while True:
 
     if obj_list.currentBlock.isFalling is False:
         gridObj.save()
-        newBlock = TestBlock(5, 0)
+        newBlock = blockRandomizer.getRandomBlock()
         obj_list.new_block(newBlock)
 
     if timerActive is False:
