@@ -31,7 +31,7 @@ class ObjectList:
 
     def new_block(self, block):
         self.objects.append(block)
-        self.currentBlockIndex += 1
+        self.objects.pop(0)
         self.currentBlock = self.objects[self.currentBlockIndex]
 
 
