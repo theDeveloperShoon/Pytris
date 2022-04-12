@@ -180,6 +180,9 @@ while True:
                         obj_list.currentBlock.yOffset += 1
                     else:
                         obj_list.currentBlock.isFalling = False
+            if event.key == pygame.K_r:
+                # obj_list.currentBlock.shape = obj_list.currentBlock.rotate()
+                pass
 
     gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
         gridObj.displayGrid)
