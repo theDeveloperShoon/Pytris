@@ -4,10 +4,10 @@ import random
 import pygame
 from pygame import Surface
 from time import gmtime, strftime
-from Game.Grid import Grid
-from Game.GameWindow import GameWindow
-from Game.Game import Game
-from Game.Block import Block
+from framework.Grid import Grid
+from framework.GameWindow import GameWindow
+from framework.Game import Game
+from framework.Block import Block
 
 
 BLACK = (0, 0, 0)
