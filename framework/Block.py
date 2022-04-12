@@ -13,7 +13,8 @@ class Block:
         while y < numOfRows:
             x = 0
             while x < numOfTiles:
-                myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
+                if(self.shape[y][x] is True):
+                    myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
                 x += 1
             y += 1
 
