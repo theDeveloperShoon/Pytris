@@ -74,3 +74,6 @@ class Grid:
                 self.grid[y][x][2] = self.displayGrid[y][x][2]
                 x += 1
             y += 1
+
+    def check_for_clears(self):
+        print("Placeholder for now")
