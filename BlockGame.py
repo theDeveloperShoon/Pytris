@@ -196,21 +196,11 @@ while True:
         pygame.time.set_timer(pygame.USEREVENT, 1000)
         timerActive = True
 
-    # Refreshes the screen with the blank black background
     screen.fill(BLACK)
     grid_surface.fill(BLACK)
 
     draw_grid(gridObj.displayGrid)
     screen.blit(grid_surface, grid_surface.get_rect())
-
-    # Draws a grid
-    # draw_a_grid(tile_size=48, vert_padding=32, horiz_padding=32)
-
-    # Essentially pastes the testBlock onto the screen at x,y (100,00)
-    # screen.blit(testBlock.sprite, (100, 100))
-
-    # Required for displaying stuff on screen
-    # Essentially a 'Draw function'
 
     gameClock.tick(120)
 
