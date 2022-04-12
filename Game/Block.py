@@ -45,7 +45,7 @@ class Block:
             Starts on the right side however
         """
         tileNumVert = len(self.shape)
-        tileNumHoriz = len(self.shape[1])
+        tileNumHoriz = len(self.shape[0])
 
         listOfLeftTiles = []
 
