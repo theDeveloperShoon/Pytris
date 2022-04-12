@@ -144,3 +144,28 @@ class Block:
 
         # print(listOfBottomTiles)
         return listOfBottomTiles
+
+    def rotate(self):
+        """
+            Is similar to getBottomSide where it creates a column based version
+            of the grid
+
+            Is not going to be used in product as there has to be a system in
+            place to see if it can rotate or not.  But am going to implement it
+            just for funs?
+        """
+        tileNumVert = len(self.shape)
+        tileNumHoriz = len(self.shape[0])
+
+        newShape = []
+        x = 0
+        while x < tileNumHoriz:
+            y = 0
+            newRow = []
+            while y < tileNumVert:
+                newRow.append(self.shape[y][x])
+                y += 1
+            newShape.append(newRow)
+            x += 1
+
+        return newShape
