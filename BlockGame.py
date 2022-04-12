@@ -15,7 +15,6 @@ WHITE = (255, 255, 255)
 
 
 objectList = []
-test
 
 
 class BlockRandomizer:
