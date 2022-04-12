@@ -161,11 +161,11 @@ class Block:
         newShape = []
         x = 0
         while x < tileNumHoriz:
-            y = 0
+            y = tileNumVert - 1
             newRow = []
-            while y < tileNumVert:
+            while y >= 0:
                 newRow.append(self.shape[y][x])
-                y += 1
+                y -= 1
             newShape.append(newRow)
             x += 1
 
