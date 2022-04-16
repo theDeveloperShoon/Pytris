@@ -1,9 +1,12 @@
+# Externals
 import sys
 import os
 import random
 import pygame
 from pygame import Surface
 from time import gmtime, strftime
+
+# Internals
 import framework.Resources as resources
 from framework.Grid import Grid
 from framework.GameWindow import GameWindow
