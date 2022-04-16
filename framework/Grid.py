@@ -75,6 +75,16 @@ class Grid:
                 x += 1
             y += 1
 
+    def fall_procedure(self):
+        self.save()
+
+        clearedRows = self.check_for_clears()
+        clearedRows.sort()
+
+        for row in clearedRows:
+            self.clear_grid_row(row)
+            self.shift_from_above(row)
+
     def check_for_clears(self):
         listOfIndexesForClearedRows = []
 
