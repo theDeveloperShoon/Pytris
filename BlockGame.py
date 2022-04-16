@@ -4,6 +4,7 @@ import random
 import pygame
 from pygame import Surface
 from time import gmtime, strftime
+import framework.Resources as resources
 from framework.Grid import Grid
 from framework.GameWindow import GameWindow
 from framework.Game import Game
@@ -108,9 +109,9 @@ def draw_grid(grid):
     for row in grid:
         for tile in row:
             if tile[2] is True:
-                grid_surface.blit(spr_tile_filled, (tile[0], tile[1]))
+                grid_surface.blit(resources.TILE_FILLED, (tile[0], tile[1]))
             else:
-                grid_surface.blit(spr_tile, (tile[0], tile[1]))
+                grid_surface.blit(resources.EMPTY_TILE, (tile[0], tile[1]))
 
 
 """
@@ -128,9 +129,6 @@ screen_height = 840
 resolution = screen_width, screen_height
 screen = pygame.display.set_mode(resolution)
 pygame.display.set_caption("Pytris - The Shady Block Game")
-
-spr_tile = pygame.image.load("assets/tile.png")
-spr_tile_filled = pygame.image.load("assets/tilefilled.png")
 
 gridObj = Grid(48, screen_width, screen_height,
                vert_padding=32, horiz_padding=32)
