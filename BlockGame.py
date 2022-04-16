@@ -191,7 +191,7 @@ while True:
         gridObj.displayGrid)
 
     if obj_list.currentBlock.isFalling is False:
-        gridObj.save()
+        gridObj.fall_procedure()
         newBlock = blockRandomizer.getRandomBlock()
         obj_list.new_block(newBlock)
 
