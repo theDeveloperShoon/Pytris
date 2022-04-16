@@ -76,4 +76,3 @@ class Grid:
             y += 1
 
     def check_for_clears(self):
-        print("Placeholder for now")
