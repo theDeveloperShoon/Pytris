@@ -190,6 +190,10 @@ while True:
 
     if obj_list.currentBlock.isFalling is False:
         gridObj.fall_procedure()
+
+        rowsCleared = gridObj.amountOfClearsinLastProcedure
+        myPlayer.score += (50 * rowsCleared)
+
         newBlock = blockRandomizer.getRandomBlock()
         obj_list.new_block(newBlock)
 
