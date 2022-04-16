@@ -117,6 +117,13 @@ def draw_grid(grid):
                 grid_surface.blit(resources.EMPTY_TILE, (tile[0], tile[1]))
 
 
+def draw_ui():
+    font = resources.DEFAULT_FONT
+    scoreText = font.render(
+        'Score - ' + str(myPlayer.score), True, WHITE, False)
+    ui_surface.blit(scoreText, scoreText.get_rect())
+
+
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for x in range(0+horiz_padding, screen_width-horiz_padding, tile_size):
@@ -137,6 +144,7 @@ gridObj = Grid(48, screen_width, screen_height,
                vert_padding=32, horiz_padding=32)
 
 grid_surface = Surface((screen_width, screen_height))
+ui_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
 startBlock = SquareBlock(5, 0)
@@ -206,9 +214,14 @@ while True:
 
     screen.fill(BLACK)
     grid_surface.fill(BLACK)
+    ui_surface.fill(BLACK)
+    ui_surface.set_colorkey(BLACK)
 
     draw_grid(gridObj.displayGrid)
+    draw_ui()
+
     screen.blit(grid_surface, grid_surface.get_rect())
+    screen.blit(ui_surface, ui_surface.get_rect())
 
     gameClock.tick(120)
 
