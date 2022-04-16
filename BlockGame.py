@@ -142,6 +142,8 @@ startBlock = SquareBlock(5, 0)
 obj_list = ObjectList(startBlock)
 blockRandomizer = BlockRandomizer()
 
+myPlayer = Player()
+
 gameClock = pygame.time.Clock()
 timerActive = False
 
