@@ -31,6 +31,8 @@ class Grid:
                                        horiz_padding,
                                        vert_padding)
 
+        self.amountOfClearsinLastProcedure = 0
+
     def update(self):
         self.clear_display_grid()
         self.paste_grid_on_display_grid()
@@ -84,6 +86,8 @@ class Grid:
         for row in clearedRows:
             self.clear_grid_row(row)
             self.shift_from_above(row)
+
+        self.amountOfClearsinLastProcedure = len(clearedRows)
 
     def check_for_clears(self):
         listOfIndexesForClearedRows = []
