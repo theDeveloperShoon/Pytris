@@ -147,9 +147,10 @@ grid_surface = Surface((screen_width, screen_height))
 ui_surface = Surface((screen_width, screen_height))
 gameStuff = Game()
 
-startBlock = SquareBlock(5, 0)
-obj_list = ObjectList(startBlock)
 blockRandomizer = BlockRandomizer()
+startBlock = blockRandomizer.getRandomBlock()
+obj_list = ObjectList(startBlock)
+
 
 myPlayer = Player()
 
