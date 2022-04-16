@@ -44,6 +44,7 @@ class BlockRandomizer:
 class Player:
     def __init__(self):
         self.highscore = 0
+        self.score = 0
 
 
 class ObjectList:
