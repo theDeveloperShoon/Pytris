@@ -76,3 +76,18 @@ class Grid:
             y += 1
 
     def check_for_clears(self):
+        listOfIndexesForClearedRows = []
+
+        y = 0
+        for row in self.grid:
+            rowIsCleared = True
+            for tile in row:
+                if tile[2] is False:
+                    rowIsCleared = False
+                    break
+            if rowIsCleared:
+                listOfIndexesForClearedRows.append(y)
+            y += 1
+
+        return listOfIndexesForClearedRows
+
