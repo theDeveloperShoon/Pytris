@@ -101,3 +101,8 @@ class Grid:
 
         return listOfIndexesForClearedRows
 
+    def clear_grid_row(self, index):
+        row = self.grid[index]
+
+        for tile in row:
+            tile[2] = False
