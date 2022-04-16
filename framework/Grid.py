@@ -101,6 +101,47 @@ class Grid:
 
         return listOfIndexesForClearedRows
 
+    def shift_from_above(self, cap):
+        """
+            Is going to through each row from top to bottom and copying the
+            data the row above down.
+
+            Reason why clearedRows in fall_procedure() needs to be sorted
+        """
+        numOfRows = len(self.grid)
+        numOfTiles = len(self.grid[0])
+
+        revisedGrid = []
+        for row in self.grid:
+            blankRow = []
+            for tile in row:
+                newTile = tile.copy()
+                newTile[2] = False
+                blankRow.append(newTile)
+            revisedGrid.append(blankRow)
+
+        y = 0
+        while y <= cap:
+            x = 0
+            while x < numOfTiles:
+                if y == 0:
+                    revisedGrid[y][x][2] = False
+                else:
+                    revisedGrid[y][x][2] = self.grid[y-1][x][2]
+                x += 1
+            y += 1
+
+        if (cap != (numOfRows - 1)):
+            y = cap + 1
+            while y < numOfRows:
+                x = 0
+                while x < numOfTiles:
+                    revisedGrid[y][x][2] = self.grid[y][x][2]
+                    x += 1
+                y += 1
+
+        self.grid = revisedGrid
+
     def clear_grid_row(self, index):
         row = self.grid[index]
 
