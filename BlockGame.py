@@ -50,9 +50,22 @@ class ObjectList:
         self.currentBlock = self.objects[self.currentBlockIndex]
 
 
+def menu_event_handler(event):
+    global gameState
 
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if event.type == pygame.MOUSEBUTTONUP:
+        if event.button == 1:
+            position = event.pos
 
+            x = position[0]
+            y = position[1]
 
+            ttext_clicked = mmenu.check_title_text_click(x, y)
+            if (ttext_clicked is True):
+                gameState = Rooms.GameScreen
 
 
 def game_event_handler(event):
@@ -135,7 +148,10 @@ gridObj = Grid(48, screen_width, screen_height,
 
 grid_surface = Surface((screen_width, screen_height))
 ui_surface = Surface((screen_width, screen_height))
+menu_surface = Surface((screen_width, screen_height))
 game = Game()
+gameState = Rooms.MainMenu
+
 
 blockRandomizer = BlockRandomizer()
 startBlock = blockRandomizer.getRandomBlock()
@@ -147,6 +163,53 @@ player = Player()
 gameClock = pygame.time.Clock()
 
 while True:
-    gridObj.update()
+    if gameState == Rooms.MainMenu:
+        for event in pygame.event.get():
+            menu_event_handler(event)
+
+        screen.fill(BLACK)
+        menu_surface.fill(BLACK)
+
+        mmenu.draw_menu()
+
+        screen.blit(menu_surface, menu_surface.get_rect())
+        gameClock.tick(120)
+
+        pygame.display.flip()
+    if gameState == Rooms.GameScreen:
+        gridObj.update()
+
+        for event in pygame.event.get():
+            game_event_handler(event)
+
+        gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
+            gridObj.displayGrid)
+
+        if obj_list.currentBlock.isFalling is False:
+            gridObj.fall_procedure()
+
+            rowsCleared = gridObj.amountOfClearsinLastProcedure
             player.score += (50 * rowsCleared)
 
+            newBlock = blockRandomizer.getRandomBlock()
+            obj_list.new_block(newBlock)
+
+        if timerActive is False:
+            pygame.time.set_timer(pygame.USEREVENT, 1000)
+            timerActive = True
+
+        screen.fill(BLACK)
+        grid_surface.fill(BLACK)
+        ui_surface.fill(BLACK)
+        ui_surface.set_colorkey(BLACK)
+
+        draw_grid(gridObj.displayGrid)
+        draw_ui()
+
+        screen.blits(blit_sequence=(
+            (grid_surface, grid_surface.get_rect()),
+            (ui_surface, ui_surface.get_rect())))
+
+        gameClock.tick(120)
+
+        pygame.display.flip()
