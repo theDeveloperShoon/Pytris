@@ -107,7 +107,7 @@ def draw_grid(grid):
 def draw_ui():
     font = resources.DEFAULT_FONT
     scoreText = font.render(
-        'Score - ' + str(myPlayer.score), True, WHITE, False)
+        'Score - ' + str(player.score), True, WHITE, False)
     ui_surface.blit(scoreText, scoreText.get_rect())
 
 
@@ -132,18 +132,19 @@ gridObj = Grid(48, screen_width, screen_height,
 
 grid_surface = Surface((screen_width, screen_height))
 ui_surface = Surface((screen_width, screen_height))
-gameStuff = Game()
+game = Game()
 
 blockRandomizer = BlockRandomizer()
 startBlock = blockRandomizer.getRandomBlock()
 obj_list = ObjectList(startBlock)
 
 
-myPlayer = Player()
+player = Player()
 
 gameClock = pygame.time.Clock()
 timerActive = False
 
 while True:
     gridObj.update()
+            player.score += (50 * rowsCleared)
 
