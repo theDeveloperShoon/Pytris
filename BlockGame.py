@@ -19,6 +19,10 @@ WHITE = (255, 255, 255)
 
 
 objectList = []
+class Rooms(Enum):
+    MainMenu = 1
+    GameScreen = 2
+    QUIT = 3
 
 
     def __init__(self):
