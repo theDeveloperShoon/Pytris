@@ -52,7 +52,47 @@ class ObjectList:
 
 
 
+def game_event_handler(event):
+    global timerActive, gameState
 
+    if event.type == pygame.USEREVENT:
+        if obj_list.currentBlock.isFalling:
+            if obj_list.currentBlock.canMoveDown(
+                    gridObj.displayGrid):
+                obj_list.currentBlock.yOffset += 1
+            else:
+                obj_list.currentBlock.isFalling = False
+            timerActive = False
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_F12:
+            path = game.gameDataPath + "/screenshots/" + \
+                strftime('%d_%b_%Y_%H_%M_%S', gmtime()) + ".png"
+
+            pygame.image.save(screen, path)
+        if event.key == pygame.K_LEFT:
+            if obj_list.currentBlock.isFalling:
+                if obj_list.currentBlock.canMoveLeft(gridObj.displayGrid):
+                    obj_list.currentBlock.xOffset -= 1
+        if event.key == pygame.K_RIGHT:
+            if obj_list.currentBlock.isFalling:
+                if obj_list.currentBlock.canMoveRight(gridObj.displayGrid):
+                    obj_list.currentBlock.xOffset += 1
+        if event.key == pygame.K_DOWN:
+            if obj_list.currentBlock.isFalling:
+                if obj_list.currentBlock.canMoveDown(
+                        gridObj.displayGrid):
+                    obj_list.currentBlock.yOffset += 1
+                else:
+                    obj_list.currentBlock.isFalling = False
+        if event.key == pygame.K_r:
+            obj_list.currentBlock.shape = obj_list.currentBlock.rotate()
+            pass
+    if event.type == pygame.KEYUP:
+        if event.key == pygame.K_ESCAPE:
+            gameState = Rooms.MainMenu
 
 
 def draw_grid(grid):
@@ -107,70 +147,3 @@ timerActive = False
 while True:
     gridObj.update()
 
-    for event in pygame.event.get():
-        if event.type == pygame.USEREVENT:
-            if obj_list.currentBlock.isFalling:
-                if obj_list.currentBlock.canMoveDown(
-                        gridObj.displayGrid):
-                    obj_list.currentBlock.yOffset += 1
-                else:
-                    obj_list.currentBlock.isFalling = False
-                timerActive = False
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_F12:
-                path = gameStuff.gameDataPath + "/screenshots/" + \
-                    strftime('%d_%b_%Y_%H_%M_%S', gmtime()) + ".png"
-
-                pygame.image.save(screen, path)
-            if event.key == pygame.K_LEFT:
-                if obj_list.currentBlock.isFalling:
-                    if obj_list.currentBlock.canMoveLeft(gridObj.displayGrid):
-                        obj_list.currentBlock.xOffset -= 1
-            if event.key == pygame.K_RIGHT:
-                if obj_list.currentBlock.isFalling:
-                    if obj_list.currentBlock.canMoveRight(gridObj.displayGrid):
-                        obj_list.currentBlock.xOffset += 1
-            if event.key == pygame.K_DOWN:
-                if obj_list.currentBlock.isFalling:
-                    if obj_list.currentBlock.canMoveDown(
-                            gridObj.displayGrid):
-                        obj_list.currentBlock.yOffset += 1
-                    else:
-                        obj_list.currentBlock.isFalling = False
-            if event.key == pygame.K_r:
-                # obj_list.currentBlock.shape = obj_list.currentBlock.rotate()
-                pass
-
-    gridObj.displayGrid = obj_list.currentBlock.paste_on_grid(
-        gridObj.displayGrid)
-
-    if obj_list.currentBlock.isFalling is False:
-        gridObj.fall_procedure()
-
-        rowsCleared = gridObj.amountOfClearsinLastProcedure
-        myPlayer.score += (50 * rowsCleared)
-
-        newBlock = blockRandomizer.getRandomBlock()
-        obj_list.new_block(newBlock)
-
-    if timerActive is False:
-        pygame.time.set_timer(pygame.USEREVENT, 1000)
-        timerActive = True
-
-    screen.fill(BLACK)
-    grid_surface.fill(BLACK)
-    ui_surface.fill(BLACK)
-    ui_surface.set_colorkey(BLACK)
-
-    draw_grid(gridObj.displayGrid)
-    draw_ui()
-
-    screen.blit(grid_surface, grid_surface.get_rect())
-    screen.blit(ui_surface, ui_surface.get_rect())
-
-    gameClock.tick(120)
-
-    pygame.display.flip()
