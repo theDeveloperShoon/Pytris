@@ -19,6 +19,9 @@ WHITE = (255, 255, 255)
 
 
 objectList = []
+timerActive = False
+
+
 class Rooms(Enum):
     MainMenu = 1
     GameScreen = 2
@@ -142,7 +145,6 @@ obj_list = ObjectList(startBlock)
 player = Player()
 
 gameClock = pygame.time.Clock()
-timerActive = False
 
 while True:
     gridObj.update()
