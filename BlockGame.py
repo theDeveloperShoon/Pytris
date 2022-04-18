@@ -28,7 +28,34 @@ class Rooms(Enum):
     QUIT = 3
 
 
+class MainMenu:
     def __init__(self):
+        menu_font = resources.DEFAULT_FONT
+
+        self.titleText = menu_font.render('Pytris', True, WHITE, False)
+
+    def draw_menu(self):
+        menu_surface.blit(self.titleText, self.titleText.get_rect())
+
+    def check_title_text_click(self, x, y):
+        ttext = self.titleText
+        ttext_width = ttext.get_width()
+        ttext_height = ttext.get_height()
+        ttext_x = ttext.get_rect().x
+        ttext_y = ttext.get_rect().y
+
+        x_check_passed = False
+        y_check_passed = False
+        if ((x > ttext_x) and (x < ttext_x + ttext_width)):
+            x_check_passed = True
+
+        if ((y > ttext_y) and (y < ttext_y + ttext_height)):
+            y_check_passed = True
+
+        if ((x_check_passed is True) and (y_check_passed is True)):
+            return True
+        else:
+            return False
 
 
 class Player:
@@ -152,6 +179,8 @@ menu_surface = Surface((screen_width, screen_height))
 game = Game()
 gameState = Rooms.MainMenu
 
+# Loads in Main Menu
+mmenu = MainMenu()
 
 blockRandomizer = BlockRandomizer()
 startBlock = blockRandomizer.getRandomBlock()
