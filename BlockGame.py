@@ -192,7 +192,7 @@ player = Player()
 gameClock = pygame.time.Clock()
 
 while True:
-    if gameState == Rooms.MainMenu:
+    while gameState == Rooms.MainMenu:
         for event in pygame.event.get():
             menu_event_handler(event)
 
@@ -205,7 +205,7 @@ while True:
         gameClock.tick(120)
 
         pygame.display.flip()
-    if gameState == Rooms.GameScreen:
+    while gameState == Rooms.GameScreen:
         gridObj.update()
 
         for event in pygame.event.get():
