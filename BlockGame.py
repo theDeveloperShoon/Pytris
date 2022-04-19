@@ -33,29 +33,52 @@ class MainMenu:
         menu_font = resources.DEFAULT_FONT
 
         self.titleText = menu_font.render('Pytris', True, WHITE, False)
+        self.titleTextRect = self.titleText.get_rect().move(
+            ((screen_width/2) - (self.titleText.get_width()/2)),
+            ((screen_height/6) - (self.titleText.get_height()/2)))
+        self.startText = menu_font.render('Start', True, WHITE, False)
+        self.startTextRect = self.startText.get_rect().move(
+            ((screen_width/2) - (self.startText.get_width()/2)),
+            (((screen_height/6)*2) - (self.startText.get_height()/2)))
+        self.exitText = menu_font.render('Exit', True, WHITE, False)
+        self.exitTextRect = self.exitText.get_rect().move(
+            ((screen_width/2) - (self.titleText.get_width()/2)),
+            (((screen_height/6)*4) - (self.titleText.get_height()/2)))
 
     def draw_menu(self):
-        menu_surface.blit(self.titleText, self.titleText.get_rect())
+        menu_surface.blit(self.titleText, self.titleTextRect)
+        menu_surface.blit(self.startText, self.startTextRect)
+        menu_surface.blit(self.exitText, self.exitTextRect)
 
     def check_title_text_click(self, x, y):
-        ttext = self.titleText
-        ttext_width = ttext.get_width()
-        ttext_height = ttext.get_height()
-        ttext_x = ttext.get_rect().x
-        ttext_y = ttext.get_rect().y
+        text = self.titleText
+        text_rect = self.titleTextRect
+        text_width = text.get_width()
+        text_height = text.get_height()
+        text_x = text_rect.x
+        text_y = text_rect.y
 
-        x_check_passed = False
-        y_check_passed = False
-        if ((x > ttext_x) and (x < ttext_x + ttext_width)):
-            x_check_passed = True
+        return button_clicked(x, y, text_x, text_y, text_width, text_height)
 
-        if ((y > ttext_y) and (y < ttext_y + ttext_height)):
-            y_check_passed = True
+    def check_start_text_click(self, x, y):
+        text = self.startText
+        text_rect = self.startTextRect
+        text_width = text.get_width()
+        text_height = text.get_height()
+        text_x = text_rect.x
+        text_y = text_rect.y
 
-        if ((x_check_passed is True) and (y_check_passed is True)):
-            return True
-        else:
-            return False
+        return button_clicked(x, y, text_x, text_y, text_width, text_height)
+
+    def check_exit_text_click(self, x, y):
+        text = self.exitText
+        text_rect = self.exitTextRect
+        text_width = text.get_width()
+        text_height = text.get_height()
+        text_x = text_rect.x
+        text_y = text_rect.y
+
+        return button_clicked(x, y, text_x, text_y, text_width, text_height)
 
 
 class Player:
@@ -90,9 +113,14 @@ def menu_event_handler(event):
             x = position[0]
             y = position[1]
 
-            ttext_clicked = mmenu.check_title_text_click(x, y)
-            if (ttext_clicked is True):
+            tstart_clicked = mmenu.check_start_text_click(x, y)
+            if (tstart_clicked is True):
                 gameState = Rooms.GameScreen
+
+            texit_clicked = mmenu.check_exit_text_click(x, y)
+            if (texit_clicked is True):
+                pygame.quit()
+                sys.exit()
 
 
 def game_event_handler(event):
