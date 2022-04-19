@@ -28,6 +28,26 @@ class Rooms(Enum):
     QUIT = 3
 
 
+def button_clicked(mouse_x,
+                   mouse_y,
+                   button_x,
+                   button_y,
+                   button_width,
+                   button_height):
+    x_check_passed = False
+    y_check_passed = False
+    if ((mouse_x > button_x) and (mouse_x < button_x + button_width)):
+        x_check_passed = True
+
+    if ((mouse_y > button_y) and (mouse_y < button_y + button_height)):
+        y_check_passed = True
+
+    if ((x_check_passed is True) and (y_check_passed is True)):
+        return True
+    else:
+        return False
+
+
 class MainMenu:
     def __init__(self):
         menu_font = resources.DEFAULT_FONT
