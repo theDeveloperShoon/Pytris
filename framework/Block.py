@@ -5,7 +5,7 @@ class Block:
         self.yOffset = yOffset
         self.isFalling = True
 
-    def paste_on_grid(self, myGrid):
+    def paste_on_grid(self, grid):
         numOfRows = len(self.shape)
         numOfTiles = len(self.shape[0])
 
@@ -14,11 +14,11 @@ class Block:
             x = 0
             while x < numOfTiles:
                 if(self.shape[y][x] is True):
-                    myGrid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
+                    grid[y+self.yOffset][x+self.xOffset][2] = self.shape[y][x]
                 x += 1
             y += 1
 
-        return myGrid
+        return grid
 
     def canMoveLeft(self, grid):
         listOfLeftTiles = self.getLeftSide()
