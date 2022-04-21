@@ -14,11 +14,6 @@ from framework.BlockRandomizer import BlockRandomizer
 from framework.Game import Game
 
 
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-
-
-objectList = []
 timerActive = False
 
 
