@@ -12,6 +12,7 @@ from framework.Grid import Grid
 from framework.GameWindow import GameWindow
 from framework.BlockRandomizer import BlockRandomizer
 from framework.Game import Game
+from framework.SaveManager import jsonify_game_data, save_on_file
 
 
 timerActive = False
@@ -152,6 +153,9 @@ def game_event_handler(event):
                 obj_list.currentBlock.isFalling = False
             timerActive = False
     if event.type == pygame.QUIT:
+        jsonDat = jsonify_game_data(game.gameDataPath, gridObj, player)
+        # save_on_file(game.gameDataPath, jsonDat)
+
         pygame.quit()
         sys.exit()
     if event.type == pygame.KEYDOWN:
