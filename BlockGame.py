@@ -200,7 +200,7 @@ def draw_ui():
     font = resources.DEFAULT_FONT
     scoreText = font.render(
         'Score - ' + str(player.score), True, resources.WHITE, False)
-    ui_surface.blit(scoreText, scoreText.get_rect())
+    ui_surface.blit(scoreText, scoreText.get_rect().move(0, 7))
 
 
 """
