@@ -47,15 +47,17 @@ class MainMenu:
     def __init__(self):
         menu_font = resources.DEFAULT_FONT
 
-        self.titleText = menu_font.render('Pytris', True, WHITE, False)
+        self.titleText = menu_font.render(
+            'Pytris', True, resources.WHITE, False)
         self.titleTextRect = self.titleText.get_rect().move(
             ((screen_width/2) - (self.titleText.get_width()/2)),
             ((screen_height/6) - (self.titleText.get_height()/2)))
-        self.startText = menu_font.render('Start', True, WHITE, False)
+        self.startText = menu_font.render(
+            'Start', True, resources.WHITE, False)
         self.startTextRect = self.startText.get_rect().move(
             ((screen_width/2) - (self.startText.get_width()/2)),
             (((screen_height/6)*2) - (self.startText.get_height()/2)))
-        self.exitText = menu_font.render('Exit', True, WHITE, False)
+        self.exitText = menu_font.render('Exit', True, resources.WHITE, False)
         self.exitTextRect = self.exitText.get_rect().move(
             ((screen_width/2) - (self.titleText.get_width()/2)),
             (((screen_height/6)*4) - (self.titleText.get_height()/2)))
@@ -193,7 +195,7 @@ def draw_grid(grid):
 def draw_ui():
     font = resources.DEFAULT_FONT
     scoreText = font.render(
-        'Score - ' + str(player.score), True, WHITE, False)
+        'Score - ' + str(player.score), True, resources.WHITE, False)
     ui_surface.blit(scoreText, scoreText.get_rect())
 
 
@@ -239,8 +241,8 @@ while True:
         for event in pygame.event.get():
             menu_event_handler(event)
 
-        screen.fill(BLACK)
-        menu_surface.fill(BLACK)
+        screen.fill(resources.BLACK)
+        menu_surface.fill(resources.BLACK)
 
         mmenu.draw_menu()
 
@@ -270,10 +272,10 @@ while True:
             pygame.time.set_timer(pygame.USEREVENT, 1000)
             timerActive = True
 
-        screen.fill(BLACK)
-        grid_surface.fill(BLACK)
-        ui_surface.fill(BLACK)
-        ui_surface.set_colorkey(BLACK)
+        screen.fill(resources.BLACK)
+        grid_surface.fill(resources.BLACK)
+        ui_surface.fill(resources.BLACK)
+        ui_surface.set_colorkey(resources.BLACK)
 
         draw_grid(gridObj.displayGrid)
         draw_ui()
