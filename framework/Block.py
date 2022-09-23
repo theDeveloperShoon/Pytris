@@ -170,3 +170,42 @@ class Block:
             x += 1
 
         return newShape
+    def rotateCheck(self,grid):
+
+        """
+            Exact same rotate code
+        """
+        tileNumVert = len(self.shape)
+        tileNumHoriz = len(self.shape[0])
+
+        newShape = []
+        x = 0
+        while x < tileNumHoriz:
+            y = tileNumVert - 1
+            newRow = []
+            while y >= 0:
+                newRow.append(self.shape[y][x])
+                y -= 1
+            newShape.append(newRow)
+            x += 1
+
+        # Rotate Check
+        canRotate = True
+
+        height = len(newShape)
+        width = len(newShape[0])
+
+        try:
+            y = 0
+            while y < height:
+                x = 0
+                while x < width:
+                    if(grid[y + self.yOffset][x + self.xOffset][2] == True):
+                        canRotate = False
+                    x+=1
+                y += 1
+        except IndexError:
+            canRotate = False
+
+        if canRotate:
+            self.shape = newShape

@@ -180,7 +180,7 @@ def game_event_handler(event):
                 else:
                     obj_list.currentBlock.isFalling = False
         if event.key == pygame.K_r:
-            obj_list.currentBlock.shape = obj_list.currentBlock.rotate()
+            obj_list.currentBlock.rotateCheck(gridObj.displayGrid)
             pass
     if event.type == pygame.KEYUP:
         if event.key == pygame.K_ESCAPE:
