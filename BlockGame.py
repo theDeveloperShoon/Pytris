@@ -181,7 +181,8 @@ def game_event_handler(event):
                     obj_list.currentBlock.isFalling = False
         if event.key == pygame.K_r:
             obj_list.currentBlock.rotateCheck(gridObj.displayGrid)
-            pass
+        if event.key == pygame.K_UP:
+            obj_list.currentBlock.instantDown(gridObj.displayGrid)
     if event.type == pygame.KEYUP:
         if event.key == pygame.K_ESCAPE:
             gameState = Rooms.MainMenu

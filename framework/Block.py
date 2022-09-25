@@ -209,3 +209,8 @@ class Block:
 
         if canRotate:
             self.shape = newShape
+    def instantDown(self,grid):
+        while self.canMoveDown(grid):
+            self.yOffset += 1
+
+        self.isFalling = False
