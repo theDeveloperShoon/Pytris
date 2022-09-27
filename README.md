@@ -17,5 +17,6 @@ Don't got a process atm
 ## Notes
 
 ### Controls
-- ARROW KEYS - Move 
+- ARROW KEYS - Move
 - F12 - Screenshot
+- R - Rotate 
