@@ -17,6 +17,7 @@ Don't got a process atm
 ## Notes
 
 ### Controls
-- ARROW KEYS - Move
+- Left, Right and Down Arrow Keys - Move
+- Up Arrow - Instant Drop
 - F12 - Screenshot
-- R - Rotate 
+- R - Rotate
