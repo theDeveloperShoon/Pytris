@@ -58,6 +58,11 @@ class MainMenu:
         self.startTextRect = self.startText.get_rect().move(
             ((screen_width/2) - (self.startText.get_width()/2)),
             (((screen_height/6)*2) - (self.startText.get_height()/2)))
+        self.continueText = menu_font.render(
+            'Continue', True, resources.WHITE, False)
+        self.continueTextRect = self.continueText.get_rect().move(
+            ((screen_width/2) - (self.continueText.get_width()/2)),
+            (((screen_height/6)*3) - (self.continueText.get_height()/2)))
         self.exitText = menu_font.render('Exit', True, resources.WHITE, False)
         self.exitTextRect = self.exitText.get_rect().move(
             ((screen_width/2) - (self.titleText.get_width()/2)),
@@ -66,6 +71,7 @@ class MainMenu:
     def draw_menu(self):
         menu_surface.blit(self.titleText, self.titleTextRect)
         menu_surface.blit(self.startText, self.startTextRect)
+        menu_surface.blit(self.continueText, self.continueTextRect)
         menu_surface.blit(self.exitText, self.exitTextRect)
 
     def check_title_text_click(self, x, y):
@@ -81,6 +87,16 @@ class MainMenu:
     def check_start_text_click(self, x, y):
         text = self.startText
         text_rect = self.startTextRect
+        text_width = text.get_width()
+        text_height = text.get_height()
+        text_x = text_rect.x
+        text_y = text_rect.y
+
+        return button_clicked(x, y, text_x, text_y, text_width, text_height)
+
+    def check_continue_text_click(self, x, y):
+        text = self.continueText
+        text_rect = self.continueTextRect
         text_width = text.get_width()
         text_height = text.get_height()
         text_x = text_rect.x
