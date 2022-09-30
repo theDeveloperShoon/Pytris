@@ -149,6 +149,11 @@ def menu_event_handler(event):
 
             tstart_clicked = mmenu.check_start_text_click(x, y)
             if (tstart_clicked is True):
+                start_game()
+                gameState = Rooms.GameScreen
+
+            tcontinue_clicked = mmenu.check_continue_text_click(x, y)
+            if(tcontinue_clicked is True):
                 gameState = Rooms.GameScreen
 
             texit_clicked = mmenu.check_exit_text_click(x, y)
@@ -219,6 +224,10 @@ def draw_ui():
         'Score - ' + str(player.score), True, resources.WHITE, False)
     ui_surface.blit(scoreText, scoreText.get_rect().move(0, 7))
 
+def start_game():
+    gridObj.reset()
+    startBlock = blockRandomizer.getRandomBlock()
+    obj_list.new_block(startBlock)
 
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):

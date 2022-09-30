@@ -53,6 +53,22 @@ class Grid:
             blankedGrid.append(clearedRow)
         self.displayGrid = blankedGrid
 
+    def clear_data_grid(self):
+        numOfRows = len(self.grid)
+        numOfTiles = len(self.grid[0])
+
+        y = 0
+        while y < numOfRows:
+            x = 0
+            while x < numOfTiles:
+                self.grid[y][x][2] = False
+                x += 1
+            y += 1
+
+    def reset(self):
+        self.clear_data_grid()
+        self.clear_display_grid()
+
     def paste_grid_on_display_grid(self):
         numOfRows = len(self.grid)
         numOfTiles = len(self.grid[0])
