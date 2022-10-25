@@ -2,6 +2,8 @@
 import sys
 import os
 import pygame
+import pygame._sdl2.controller
+
 from pygame import Surface
 from time import gmtime, strftime
 from enum import Enum
@@ -134,6 +136,9 @@ class ObjectList:
         self.currentBlock = self.objects[self.currentBlockIndex]
 
 
+class Empty:
+    pass
+
 def menu_event_handler(event):
     global gameState
 
@@ -253,6 +258,10 @@ ui_surface = Surface((screen_width, screen_height))
 menu_surface = Surface((screen_width, screen_height))
 game = Game()
 gameState = Rooms.MainMenu
+controller = Empty()
+if pygame._sdl2.controller.get_count():
+    controller = pygame._sdl2.controller.Controller()
+
 
 # Loads in Main Menu
 mmenu = MainMenu()
