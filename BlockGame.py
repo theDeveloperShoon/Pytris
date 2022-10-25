@@ -276,6 +276,8 @@ def start_game():
     gridObj.reset()
     startBlock = blockRandomizer.getRandomBlock()
     obj_list.new_block(startBlock)
+    player.score = 0
+
 
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
