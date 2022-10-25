@@ -80,22 +80,29 @@ class MainMenu:
         self.startText = menu_font.render(
             'Start', True, resources.WHITE, False)
         self.startTextRect = self.startText.get_rect().move(
-            ((screen_width/2) - (self.startText.get_width()/2)),
+            ((screen_width) - (self.startText.get_width() + 64)),
             (((screen_height/6)*2) - (self.startText.get_height()/2)))
-        self.continueText = menu_font.render(
+        self.continueTextWhite = menu_font.render(
             'Continue', True, resources.WHITE, False)
-        self.continueTextRect = self.continueText.get_rect().move(
-            ((screen_width/2) - (self.continueText.get_width()/2)),
-            (((screen_height/6)*3) - (self.continueText.get_height()/2)))
+        self.continueTextGray = menu_font.render(
+            'Continue', True, resources.GRAY, False)
+        self.continueTextRect = self.continueTextWhite.get_rect().move(
+            ((screen_width) - (self.continueTextWhite.get_width() + 64)),
+            (((screen_height/6)*3) - (self.continueTextWhite.get_height()/2)))
         self.exitText = menu_font.render('Exit', True, resources.WHITE, False)
         self.exitTextRect = self.exitText.get_rect().move(
-            ((screen_width/2) - (self.titleText.get_width()/2)),
+            ((screen_width) - (self.titleText.get_width() + 64)),
             (((screen_height/6)*4) - (self.titleText.get_height()/2)))
 
     def draw_menu(self):
         menu_surface.blit(self.titleText, self.titleTextRect)
         menu_surface.blit(self.startText, self.startTextRect)
-        menu_surface.blit(self.continueText, self.continueTextRect)
+
+        if gameStarted:
+            menu_surface.blit(self.continueTextWhite, self.continueTextRect)
+        else:
+            menu_surface.blit(self.continueTextGray, self.continueTextRect)
+
         menu_surface.blit(self.exitText, self.exitTextRect)
 
     def check_title_text_click(self, x, y):
@@ -119,7 +126,7 @@ class MainMenu:
         return button_clicked(x, y, text_x, text_y, text_width, text_height)
 
     def check_continue_text_click(self, x, y):
-        text = self.continueText
+        text = self.continueTextWhite
         text_rect = self.continueTextRect
         text_width = text.get_width()
         text_height = text.get_height()
@@ -174,7 +181,7 @@ def gameend_event_hander(event):
 
 
 def menu_event_handler(event):
-    global gameState
+    global gameState, gameStarted
 
     if event.type == pygame.QUIT:
         pygame.quit()
@@ -188,6 +195,7 @@ def menu_event_handler(event):
 
             tstart_clicked = mmenu.check_start_text_click(x, y)
             if (tstart_clicked is True):
+                gameStarted = True
                 start_game()
                 gameState = Rooms.GameScreen
 
@@ -263,6 +271,7 @@ def draw_ui():
         'Score - ' + str(player.score), True, resources.WHITE, False)
     ui_surface.blit(scoreText, scoreText.get_rect().move(0, 7))
 
+
 def start_game():
     gridObj.reset()
     startBlock = blockRandomizer.getRandomBlock()
@@ -294,6 +303,8 @@ game_over_surface = Surface((screen_width, screen_height))
 
 game = Game()
 gameState = Rooms.MainMenu
+gameStarted = False
+
 controller = Empty()
 if pygame._sdl2.controller.get_count():
     controller = pygame._sdl2.controller.Controller()
