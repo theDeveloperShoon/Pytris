@@ -290,6 +290,8 @@ gridObj = Grid(48, screen_width, screen_height,
 grid_surface = Surface((screen_width, screen_height))
 ui_surface = Surface((screen_width, screen_height))
 menu_surface = Surface((screen_width, screen_height))
+game_over_surface = Surface((screen_width, screen_height))
+
 game = Game()
 gameState = Rooms.MainMenu
 controller = Empty()
