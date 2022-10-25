@@ -143,7 +143,7 @@ class Block:
             listOfBottomTiles.append(myTile)
             x += 1
 
-        # print(listOfBottomTiles)
+        #print(listOfBottomTiles)
         return listOfBottomTiles
 
     def rotate(self):
@@ -170,8 +170,8 @@ class Block:
             x += 1
 
         return newShape
-    def rotateCheck(self,grid):
 
+    def rotateCheck(self, grid):
         """
             Exact same rotate code
         """
@@ -202,14 +202,15 @@ class Block:
                 while x < width:
                     if(grid[y + self.yOffset][x + self.xOffset][2] == True):
                         canRotate = False
-                    x+=1
+                    x += 1
                 y += 1
         except IndexError:
             canRotate = False
 
         if canRotate:
             self.shape = newShape
-    def instantDown(self,grid):
+
+    def instantDown(self, grid):
         while self.canMoveDown(grid):
             self.yOffset += 1
 
