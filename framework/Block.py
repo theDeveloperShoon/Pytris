@@ -215,3 +215,34 @@ class Block:
             self.yOffset += 1
 
         self.isFalling = False
+
+    def can_spawn(self, grid):
+
+        tiles = self.get_tiles_relative_to_grid()
+
+        canSpawn = True
+        for tile in tiles:
+            if grid[tile[1]][tile[0]][2] is True:
+                canSpawn = False
+                break
+
+        return canSpawn
+
+    def get_tiles_relative_to_grid(self):
+
+        tile_list = []
+
+        height = len(self.shape)
+        width = len(self.shape[0])
+
+        y = 0
+        while y < height:
+            x = 0
+            while x < width:
+                if self.shape[y][x] is True:
+                    tile_list.append([self.xOffset+x, self.yOffset+y])
+
+                x += 1
+            y += 1
+
+        return tile_list
