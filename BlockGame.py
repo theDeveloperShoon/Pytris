@@ -23,6 +23,7 @@ timerActive = False
 class Rooms(Enum):
     MainMenu = 1
     GameScreen = 2
+    GameOver = 4
     QUIT = 3
 
 
@@ -44,6 +45,27 @@ def button_clicked(mouse_x,
         return True
     else:
         return False
+
+
+class GameOverMenu():
+    def __init__(self):
+        menu_font = resources.DEFAULT_FONT
+
+        self.gameOverText = menu_font.render(
+            'GAME OVER', True, resources.RED, False)
+        self.gameOverTextRect = self.gameOverText.get_rect().move(
+            ((screen_width/2) - (self.gameOverText.get_width()/2)),
+            ((screen_height/2) - (self.gameOverText.get_height()/2)))
+        self.leaveHintText = menu_font.render(
+            'Press Escape to go to Main Menu', True, resources.GRAY, False)
+        self.leaveHintTextRect = self.leaveHintText.get_rect().move(
+            (screen_width/2) - (self.leaveHintText.get_width()/2),
+            (((screen_height/2) + 64) - (self.leaveHintText.get_height()/2)))
+
+    def draw_menu(self):
+        game_over_surface.blits(blit_sequence=(
+            (self.gameOverText, self.gameOverTextRect),
+            (self.leaveHintText, self.leaveHintTextRect)))
 
 
 class MainMenu:
@@ -138,6 +160,18 @@ class ObjectList:
 
 class Empty:
     pass
+
+
+def gameend_event_hander(event):
+    global gameState, gameStarted
+
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if event.type == pygame.KEYUP:
+        if event.key == pygame.K_ESCAPE:
+            gameState = Rooms.MainMenu
+
 
 def menu_event_handler(event):
     global gameState
@@ -265,6 +299,7 @@ if pygame._sdl2.controller.get_count():
 
 # Loads in Main Menu
 mmenu = MainMenu()
+gomenu = GameOverMenu()
 
 blockRandomizer = BlockRandomizer()
 startBlock = blockRandomizer.getRandomBlock()
@@ -306,6 +341,9 @@ while True:
 
             newBlock = blockRandomizer.getRandomBlock()
             obj_list.new_block(newBlock)
+            if not obj_list.currentBlock.can_spawn(gridObj.grid):
+                gameStarted = False
+                gameState = Rooms.GameOver
 
         if timerActive is False:
             pygame.time.set_timer(pygame.USEREVENT, 1000)
@@ -323,6 +361,19 @@ while True:
             (grid_surface, grid_surface.get_rect()),
             (ui_surface, ui_surface.get_rect())))
 
+        gameClock.tick(120)
+
+        pygame.display.flip()
+    while gameState == Rooms.GameOver:
+        for event in pygame.event.get():
+            gameend_event_hander(event)
+
+        screen.fill(resources.BLACK)
+        game_over_surface.fill(resources.BLACK)
+
+        gomenu.draw_menu()
+
+        screen.blit(game_over_surface, game_over_surface.get_rect())
         gameClock.tick(120)
 
         pygame.display.flip()
