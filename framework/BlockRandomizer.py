@@ -25,6 +25,12 @@ class BlockRandomizer:
         newObject = newObjectType(5, 0)
         return newObject
 
+    def findBlockType(self, typeIndex):
+        return self.BlockTypes[typeIndex]
+
+    def findBlockIndex(self, BlockType):
+        return self.BlockTypes.index(BlockType)
+
 
 class SquareBlock(Block):
     def __init__(self, *args):
