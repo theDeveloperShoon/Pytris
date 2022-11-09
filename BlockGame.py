@@ -275,7 +275,7 @@ def start_game():
 
 def exitProcess():
     jsonDat = jsonify_game_data(
-        game.gameDataPath, gridObj, player, obj_list)
+        game.gameDataPath, gridObj, player, obj_list, gameStarted)
     save_on_file(game.gameDataPath, jsonDat)
 
     pygame.quit()
@@ -283,9 +283,10 @@ def exitProcess():
 
 
 def load_previous_data():
+    global gameStarted
     if os.path.exists(game.gameDataPath+"/save.json"):
 
-        gridDict, playerDict, objectListDict, blkIndex = load_file(
+        gridDict, playerDict, objectListDict, blkIndex, started = load_file(
             game.gameDataPath+"/save.json")
 
         gridObj.__dict__ = gridDict
@@ -296,6 +297,7 @@ def load_previous_data():
         Blanky = e(5, 0)
         Blanky.__dict__ = obj_list.currentBlock
         obj_list.currentBlock = Blanky
+        gameStarted = started
 
 
 """

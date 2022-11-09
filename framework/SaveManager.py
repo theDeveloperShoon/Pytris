@@ -4,12 +4,13 @@ from framework.BlockRandomizer import BlockRandomizer
 
 
 class SaveData:
-    def __init__(self, grid_object=0, player_object=0, object_list=0):
+    def __init__(self, grid_object=0, player_object=0, object_list=0, started=0):
         tmpRandomizer = BlockRandomizer()
 
         self.grid_dat = grid_object
         self.player_dat = player_object
         self.object_dat = object_list
+        self.gameStarted = started
 
         if object_list != 0:
             self.blockType_dat = tmpRandomizer.findBlockIndex(
@@ -32,7 +33,7 @@ def load_file(game_data_file):
     saveDataDict = json.load(f)
     dataReturn = SaveData()
     dataReturn.__dict__ = saveDataDict
-    return dataReturn.grid_dat, dataReturn.player_dat, dataReturn.object_dat, dataReturn.blockType_dat
+    return dataReturn.grid_dat, dataReturn.player_dat, dataReturn.object_dat, dataReturn.blockType_dat, dataReturn.gameStarted
 
 
 def save_on_file(game_data_path, json_string):
@@ -40,10 +41,10 @@ def save_on_file(game_data_path, json_string):
     f.write(json_string)
 
 
-def jsonify_game_data(game_data_path, grid_object, player_object, object_list):
+def jsonify_game_data(game_data_path, grid_object, player_object, object_list, started):
     # f = open(game_data_path+"/save2.json", 'w+')
     # json.dump(grid_object.__dict__, f)
     # print(json.dumps(testList))
-    saveDat = SaveData(grid_object, player_object, object_list)
+    saveDat = SaveData(grid_object, player_object, object_list, started)
     # print(json.dumps(saveDat, cls=DataEncoder, indent=4))
     return json.dumps(saveDat, cls=DataEncoder, indent=4)
