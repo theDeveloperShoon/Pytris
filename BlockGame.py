@@ -14,7 +14,6 @@ from framework.Grid import Grid
 from framework.GameWindow import GameWindow
 from framework.BlockRandomizer import BlockRandomizer
 from framework.Game import Game
-from framework.SaveManager import jsonify_game_data, save_on_file
 from framework.SaveManager import jsonify_game_data, save_on_file, load_file
 
 
@@ -174,8 +173,7 @@ def gameend_event_hander(event):
     global gameState, gameStarted
 
     if event.type == pygame.QUIT:
-        pygame.quit()
-        sys.exit()
+        exitProcess()
     if event.type == pygame.KEYUP:
         if event.key == pygame.K_ESCAPE:
             gameState = Rooms.MainMenu
@@ -185,8 +183,7 @@ def menu_event_handler(event):
     global gameState, gameStarted
 
     if event.type == pygame.QUIT:
-        pygame.quit()
-        sys.exit()
+        exitProcess()
     if event.type == pygame.MOUSEBUTTONUP:
         if event.button == 1:
             position = event.pos
@@ -202,12 +199,12 @@ def menu_event_handler(event):
 
             tcontinue_clicked = mmenu.check_continue_text_click(x, y)
             if(tcontinue_clicked is True):
-                gameState = Rooms.GameScreen
+                if gameStarted:
+                    gameState = Rooms.GameScreen
 
             texit_clicked = mmenu.check_exit_text_click(x, y)
             if (texit_clicked is True):
-                pygame.quit()
-                sys.exit()
+                exitProcess()
 
 
 def game_event_handler(event):
@@ -222,11 +219,7 @@ def game_event_handler(event):
                 obj_list.currentBlock.isFalling = False
             timerActive = False
     if event.type == pygame.QUIT:
-        jsonDat = jsonify_game_data(game.gameDataPath, gridObj, player)
-        # save_on_file(game.gameDataPath, jsonDat)
-
-        pygame.quit()
-        sys.exit()
+        exitProcess()
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_F12:
             path = game.gameDataPath + "/screenshots/" + \
@@ -278,6 +271,15 @@ def start_game():
     startBlock = blockRandomizer.getRandomBlock()
     obj_list.new_block(startBlock)
     player.score = 0
+
+
+def exitProcess():
+    jsonDat = jsonify_game_data(
+        game.gameDataPath, gridObj, player, obj_list)
+    save_on_file(game.gameDataPath, jsonDat)
+
+    pygame.quit()
+    sys.exit()
 
 
 def load_previous_data():
