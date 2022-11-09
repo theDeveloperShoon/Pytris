@@ -15,6 +15,7 @@ from framework.GameWindow import GameWindow
 from framework.BlockRandomizer import BlockRandomizer
 from framework.Game import Game
 from framework.SaveManager import jsonify_game_data, save_on_file
+from framework.SaveManager import jsonify_game_data, save_on_file, load_file
 
 
 timerActive = False
@@ -279,6 +280,22 @@ def start_game():
     player.score = 0
 
 
+def load_previous_data():
+    if os.path.exists(game.gameDataPath+"/save.json"):
+
+        gridDict, playerDict, objectListDict, blkIndex = load_file(
+            game.gameDataPath+"/save.json")
+
+        gridObj.__dict__ = gridDict
+        player.__dict__ = playerDict
+        obj_list.__dict__ = objectListDict
+
+        e = blockRandomizer.findBlockType(blkIndex)
+        Blanky = e(5, 0)
+        Blanky.__dict__ = obj_list.currentBlock
+        obj_list.currentBlock = Blanky
+
+
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for x in range(0+horiz_padding, screen_width-horiz_padding, tile_size):
@@ -324,6 +341,8 @@ obj_list = ObjectList(startBlock)
 player = Player()
 
 gameClock = pygame.time.Clock()
+
+load_previous_data()
 
 while True:
     while gameState == Rooms.MainMenu:
