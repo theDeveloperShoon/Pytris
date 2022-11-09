@@ -16,10 +16,10 @@ class Game:
                 gameDataPath = localAppDataPath + "/.Pytris"
 
                 # Checks if the screenshots folder exists
-                if os.path.exists(gameDataPath + "screenshots"):
+                if os.path.exists(gameDataPath + "/screenshots"):
                     pass
                 else:
-                    os.mkdir(gameDataPath + 'screenshots')
+                    os.mkdir(gameDataPath + '/screenshots')
 
             else:
                 os.mkdir(localAppDataPath + "/.Pytris")
@@ -33,10 +33,10 @@ class Game:
                 gameDataPath = localAppDataPath + "/Pytris"
 
                 # Checks if the screenshots folder exists
-                if os.path.exists(gameDataPath + "screenshots"):
+                if os.path.exists(gameDataPath + "/screenshots"):
                     pass
                 else:
-                    os.mkdir(gameDataPath + 'screenshots')
+                    os.mkdir(gameDataPath + '/screenshots')
             else:
                 os.mkdir(localAppDataPath + "/Pytris")
                 gameDataPath = localAppDataPath + "/Pytris"
@@ -48,10 +48,10 @@ class Game:
                 gameDataPath = localAppDataPath + "/Pytris"
 
                 # Checks if the screenshots folder exists
-                if os.path.exists(gameDataPath + "screenshots"):
+                if os.path.exists(gameDataPath + "/screenshots"):
                     pass
                 else:
-                    os.mkdir(gameDataPath + 'screenshots')
+                    os.mkdir(gameDataPath + '/screenshots')
 
             else:
                 os.mkdir(localAppDataPath + "/Pytris")
