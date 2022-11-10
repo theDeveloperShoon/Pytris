@@ -77,6 +77,11 @@ class MainMenu:
         self.titleTextRect = self.titleText.get_rect().move(
             ((screen_width/2) - (self.titleText.get_width()/2)),
             ((screen_height/6) - (self.titleText.get_height()/2)))
+        self.highscoreText = menu_font.render(
+            'Highscore: 0', True, resources.WHITE, False)
+        self.highscoreTextRect = self.highscoreText.get_rect().move(
+            ((screen_width/2) - (self.highscoreText.get_width()/2)),
+            ((screen_height/6) + self.highscoreText.get_height()))
         self.startText = menu_font.render(
             'Start', True, resources.WHITE, False)
         self.startTextRect = self.startText.get_rect().move(
@@ -145,6 +150,15 @@ class MainMenu:
         text_y = text_rect.y
 
         return button_clicked(x, y, text_x, text_y, text_width, text_height)
+
+    def update(self):  # Updates highscore text (that doesn't exist rn)
+        menu_font = resources.DEFAULT_FONT
+
+        self.highscoreText = menu_font.render(
+            "Highscore: " + str(player.highscore), True, resources.WHITE, False)
+        self.highscoreTextRect = self.highscoreText.get_rect().move(
+            ((screen_width/2) - (self.highscoreText.get_width()/2)),
+            ((screen_height/6) + self.highscoreText.get_height()))
 
 
 class Player:
@@ -348,9 +362,12 @@ player = Player()
 gameClock = pygame.time.Clock()
 
 load_previous_data()
+mmenu.update()
 
 while True:
     while gameState == Rooms.MainMenu:
+        mmenu.update()
+
         for event in pygame.event.get():
             menu_event_handler(event)
 
@@ -383,6 +400,7 @@ while True:
             if not obj_list.currentBlock.can_spawn(gridObj.grid):
                 gameStarted = False
                 gameState = Rooms.GameOver
+                player.highscore = player.score
 
         if timerActive is False:
             pygame.time.set_timer(pygame.USEREVENT, 1000)
