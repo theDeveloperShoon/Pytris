@@ -143,7 +143,6 @@ class Block:
             listOfBottomTiles.append(myTile)
             x += 1
 
-        #print(listOfBottomTiles)
         return listOfBottomTiles
 
     def rotate(self):
@@ -200,7 +199,7 @@ class Block:
             while y < height:
                 x = 0
                 while x < width:
-                    if(grid[y + self.yOffset][x + self.xOffset][2] == True):
+                    if(grid[y + self.yOffset][x + self.xOffset][2] is True):
                         canRotate = False
                     x += 1
                 y += 1

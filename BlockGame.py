@@ -95,15 +95,16 @@ class MainMenu:
             (((screen_height/6)*4) - (self.titleText.get_height()/2)))
 
     def draw_menu(self):
-        menu_surface.blit(self.titleText, self.titleTextRect)
-        menu_surface.blit(self.startText, self.startTextRect)
+        menu_surface.blits(blit_sequence=(
+            (self.titleText, self.titleTextRect),
+            (self.startText, self.startTextRect),
+            (self.highscoreText, self.highscoreTextRect),
+            (self.exitText, self.exitTextRect)))
 
         if gameStarted:
             menu_surface.blit(self.continueTextWhite, self.continueTextRect)
         else:
             menu_surface.blit(self.continueTextGray, self.continueTextRect)
-
-        menu_surface.blit(self.exitText, self.exitTextRect)
 
     def check_title_text_click(self, x, y):
         text = self.titleText
