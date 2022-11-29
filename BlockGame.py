@@ -16,7 +16,6 @@ from framework.BlockRandomizer import BlockRandomizer
 from framework.Game import Game
 from framework.SaveManager import jsonify_game_data, save_on_file, load_file
 
-
 timerActive = False
 
 
@@ -25,7 +24,6 @@ class Rooms(Enum):
     GameScreen = 2
     GameOver = 4
     QUIT = 3
-
 
 def button_clicked(mouse_x,
                    mouse_y,
@@ -46,7 +44,6 @@ def button_clicked(mouse_x,
     else:
         return False
 
-
 class GameOverMenu():
     def __init__(self):
         menu_font = resources.DEFAULT_FONT
@@ -66,7 +63,6 @@ class GameOverMenu():
         game_over_surface.blits(blit_sequence=(
             (self.gameOverText, self.gameOverTextRect),
             (self.leaveHintText, self.leaveHintTextRect)))
-
 
 class MainMenu:
     def __init__(self):
@@ -151,7 +147,7 @@ class MainMenu:
 
         return button_clicked(x, y, text_x, text_y, text_width, text_height)
 
-    def update(self):  # Updates highscore text (that doesn't exist rn)
+    def update(self):
         menu_font = resources.DEFAULT_FONT
 
         self.highscoreText = menu_font.render(
@@ -182,7 +178,6 @@ class ObjectList:
 
 class Empty:
     pass
-
 
 def gameend_event_hander(event):
     global gameState, gameStarted
@@ -296,7 +291,6 @@ def exitProcess():
     pygame.quit()
     sys.exit()
 
-
 def load_previous_data():
     global gameStarted
     if os.path.exists(game.gameDataPath+"/save.json"):
@@ -314,7 +308,6 @@ def load_previous_data():
         obj_list.currentBlock = Blanky
         gameStarted = started
 
-
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
     for x in range(0+horiz_padding, screen_width-horiz_padding, tile_size):
@@ -325,15 +318,17 @@ def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
 
 pygame.init()
 
+# Display setup
 screen_width = 640
 screen_height = 840
 resolution = screen_width, screen_height
 screen = pygame.display.set_mode(resolution)
-pygame.display.set_caption("Pytris - The Shady Block Game")
+pygame.display.set_caption("Pytris - The Block Game")
 
 gridObj = Grid(48, screen_width, screen_height,
                vert_padding=32, horiz_padding=32)
 
+# Initializes Surfaces
 grid_surface = Surface((screen_width, screen_height))
 ui_surface = Surface((screen_width, screen_height))
 menu_surface = Surface((screen_width, screen_height))
@@ -347,7 +342,6 @@ controller = Empty()
 if pygame._sdl2.controller.get_count():
     controller = pygame._sdl2.controller.Controller()
 
-
 # Loads in Main Menu
 mmenu = MainMenu()
 gomenu = GameOverMenu()
@@ -355,7 +349,6 @@ gomenu = GameOverMenu()
 blockRandomizer = BlockRandomizer()
 startBlock = blockRandomizer.getRandomBlock()
 obj_list = ObjectList(startBlock)
-
 
 player = Player()
 
@@ -393,7 +386,10 @@ while True:
             gridObj.fall_procedure()
 
             rowsCleared = gridObj.amountOfClearsinLastProcedure
-            player.score += (50 * rowsCleared)
+            if rowsCleared == 4:
+                player.score += 500
+            else:
+                player.score += (100 * rowsCleared)
 
             newBlock = blockRandomizer.getRandomBlock()
             obj_list.new_block(newBlock)
