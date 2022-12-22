@@ -11,7 +11,7 @@ Don't got a process atm
 - pygame
 
 ## Notes
-
+Pytris tries to follow a PEP8
 
 ### Controls
 - Left, Right and Down Arrow Keys - Move
