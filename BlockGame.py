@@ -294,19 +294,22 @@ def exitProcess():
 def load_previous_data():
     global gameStarted
     if os.path.exists(game.gameDataPath+"/save.json"):
+        try:
 
-        gridDict, playerDict, objectListDict, blkIndex, started = load_file(
-            game.gameDataPath+"/save.json")
+            gridDict, playerDict, objectListDict, blkIndex, started = load_file(
+                    game.gameDataPath+"/save.json")
 
-        gridObj.__dict__ = gridDict
-        player.__dict__ = playerDict
-        obj_list.__dict__ = objectListDict
+            gridObj.__dict__ = gridDict
+            player.__dict__ = playerDict
+            obj_list.__dict__ = objectListDict
 
-        e = blockRandomizer.findBlockType(blkIndex)
-        Blanky = e(5, 0)
-        Blanky.__dict__ = obj_list.currentBlock
-        obj_list.currentBlock = Blanky
-        gameStarted = started
+            e = blockRandomizer.findBlockType(blkIndex)
+            Blanky = e(5, 0)
+            Blanky.__dict__ = obj_list.currentBlock
+            obj_list.currentBlock = Blanky
+            gameStarted = started
+        except:
+            return
 
 """
 def draw_a_grid(tile_size=16, horiz_padding=0, vert_padding=0):
